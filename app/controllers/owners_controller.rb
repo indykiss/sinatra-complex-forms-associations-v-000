@@ -2,10 +2,10 @@ class OwnersController < ApplicationController
 
   get '/owners' do
     @owners = Owner.all
-    erb :'/owners/index' 
+    erb :'/owners/index'
   end
 
-  get '/owners/new' do 
+  get '/owners/new' do
     @pets = Pet.all
     erb :'/owners/new'
   end
@@ -18,13 +18,14 @@ class OwnersController < ApplicationController
     redirect "owners/#{@owner.id}"
   end
 
-  get '/owners/:id/edit' do 
+  get '/owners/:id/edit' do
+  binding.pru
     @pets = Pet.all
     @owner = Owner.find(params[:id])
     erb :'/owners/edit'
   end
 
-  get '/owners/:id' do 
+  get '/owners/:id' do
     @owner = Owner.find(params[:id])
     erb :'/owners/show'
   end
@@ -35,7 +36,7 @@ class OwnersController < ApplicationController
     params[:owner]["pet_ids"] = []
     end
     #######
- 
+
     @owner = Owner.find(params[:id])
     @owner.update(params[:owner])
     if !params[:pet][:name].empty?
@@ -44,6 +45,3 @@ class OwnersController < ApplicationController
     redirect "owners/#{@owner.id}"
 end
 end
-
-
-
